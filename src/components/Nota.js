@@ -1,20 +1,22 @@
 import React from 'react'
+import ListaTags from './ListaTags'
+
+// ***** ACCEPTABLE PROPS *****
+// description [string]: Note's description
+// tags [array]: Note's tags
+// createdAt [date]: Note's date of creation
 
 class Nota extends React.Component {
     render() {
         return (
             <div>
                 <p>
-                    Taken in December 19, 2020. Last edition in January 10, 2021
+                    {this.props.createdAt.toString()}
                 </p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Ut tincidunt hendrerit odio tempor feugiat. Aenean aliqu
-                    et eros vel cursus volutpat.
+                    {this.props.description}
                 </p>
-                <p>
-                    Tags: #dragon #book #notes #greatOne
-                </p>
+                {(this.props.tags.length > 0) && <div>Tags: <ListaTags tags={this.props.tags}/></div>}
                 <div>
                     <button>Edit</button>
                     <button>Delete</button>
