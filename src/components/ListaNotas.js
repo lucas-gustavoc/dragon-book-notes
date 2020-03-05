@@ -3,20 +3,37 @@ import Nota from './Nota'
 
 // ***** ACCEPTABLE PROPS *****
 // notas [array<Nota>]: List of notes to render
+// handleDeleteNote [function]: Function called when some note was deleted
+// handleEditNote [function]: Function called when some note was edited
 
-const ListaNotas = props => {
-    return (
-        <div>
-            {props.notas.map((nota, i) => 
-                <Nota 
-                    key={i}
-                    description={nota.description}
-                    tags={nota.tags}
-                    createdAt={nota.createdAt}
-                />
-            )}
-        </div>
-    )
+class ListaNotas extends React.Component {
+
+    handleDeleteNote = (noteIndex) => {
+        if (this.props.handleDeleteNote) this.props.handleDeleteNote(noteIndex)
+    }
+
+    handleEditNote = (description, tags, noteIndex) => {
+        if (this.props.handleEditNote) this.props.handleEditNote(description, tags, noteIndex)
+    }
+
+    render() {
+        return (
+            <div>
+                {this.props.notas.map((nota, i) => 
+                    <Nota 
+                        key={i}
+                        index={i}
+                        description={nota.description}
+                        tags={nota.tags}
+                        createdAt={nota.createdAt}
+                        deleteNote={this.handleDeleteNote}
+                        editNote={this.handleEditNote}
+                    />
+                )}
+            </div>
+        )
+    }
+
 }
 
 ListaNotas.defaultProps = {
