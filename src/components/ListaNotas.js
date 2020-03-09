@@ -26,6 +26,7 @@ class ListaNotas extends React.Component {
                         description={nota.description}
                         tags={nota.tags}
                         createdAt={nota.createdAt}
+                        lastEditedAt={nota.lastEditedAt}
                         deleteNote={this.handleDeleteNote}
                         editNote={this.handleEditNote}
                     />

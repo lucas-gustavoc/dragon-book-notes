@@ -1,22 +1,33 @@
 import React from 'react'
 import AddNota from './AddNota'
 import ListaNotas from './ListaNotas'
-
-// [ ] Implementar o lastEditedAt
-// [ ] Implementar validação para nota vazia
+import ButtonToggleLanguage from './ButtonToggleLanguage'
+import Language from '../contexts/Language'
 
 class App extends React.Component {
-    
-    state = {
-        notas: []
+
+    toggleLanguage = () => {
+        this.setState(prev => ({
+            language: (prev.language === 'pt-br') ? 'en-us' : 'pt-br'
+        }))
     }
 
-    criarNovaNota = (description, tags) => ({
-        description,
-        tags,
-        createdAt: new Date(),
-        lastEditedAt: new Date()
-    })
+    state = {
+        notas: [],
+        language: 'en-us',
+        toggleLanguage: this.toggleLanguage
+    }
+
+    
+    criarNovaNota = (description, tags) => {
+        const dataAtual = new Date()
+        return {
+            description,
+            tags,
+            createdAt: dataAtual,
+            lastEditedAt: dataAtual
+        }
+    }
 
     handleAddNota = (description, tags) => {
         const notas = this.state.notas
@@ -34,18 +45,25 @@ class App extends React.Component {
         const notas = this.state.notas
         notas[noteIndex].description = description
         notas[noteIndex].tags = tags
+        notas[noteIndex].lastEditedAt = new Date()
         this.setState(prev => ({ notas }))
     }
     
     render() {
         return (
             <div>
-                <AddNota handleAddNota={this.handleAddNota}/>
-                <ListaNotas
-                    notas={this.state.notas}
-                    handleDeleteNote={this.handleDeleteNote}
-                    handleEditNote={this.handleEditNote}
-                />
+                <Language.Provider value={{ 
+                    language: this.state.language, 
+                    toggleLanguage: this.state.toggleLanguage 
+                }}>
+                    <ButtonToggleLanguage/>
+                    <AddNota handleAddNota={this.handleAddNota}/>
+                    <ListaNotas
+                        notas={this.state.notas}
+                        handleDeleteNote={this.handleDeleteNote}
+                        handleEditNote={this.handleEditNote}
+                    />
+                </Language.Provider>
             </div>
         )
     }

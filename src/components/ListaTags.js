@@ -33,12 +33,13 @@ ListaTags.defaultProps = {
 
 const Tag = props => {
 
-    const removeTag = e => props.removeTag(props.index)
+    // Em caso de tag sem nome, o componente não renderiza
+    if (!props.tagName) return null
 
     return (
         <li>
             {props.tagName}
-            {props.deletable && <button onClick={removeTag}>x</button>}
+            {props.deletable && <button onClick={e => props.removeTag(props.index)}>x</button>}
         </li>
     )
 }
