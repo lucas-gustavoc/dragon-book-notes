@@ -1,10 +1,8 @@
 import React from 'react'
-import AddNota from './AddNota'
-import ListaNotas from './ListaNotas'
-import ButtonToggleLanguage from './ButtonToggleLanguage'
 import Language from '../contexts/Language'
-import AddNotaErrorHandler from '../error_handlers/AddNotaErrorHandler'
-import ListaNotasErrorHandler from '../error_handlers/ListaNotasErrorHandler'
+import ButtonToggleLanguage from './ButtonToggleLanguage'
+import BookNotesPage from './BookNotesPage'
+import BooksPage from './BooksPage'
 
 class App extends React.Component {
 
@@ -15,42 +13,10 @@ class App extends React.Component {
     }
 
     state = {
-        notas: [],
         language: 'en-us',
         toggleLanguage: this.toggleLanguage
     }
 
-    
-    criarNovaNota = (description, tags) => {
-        const dataAtual = new Date()
-        return {
-            description,
-            tags,
-            createdAt: dataAtual,
-            lastEditedAt: dataAtual
-        }
-    }
-
-    handleAddNota = (description, tags) => {
-        const notas = this.state.notas
-        notas.unshift(this.criarNovaNota(description, tags))
-        this.setState(prev => ({ notas }))
-    }
-
-    handleDeleteNote = (noteIndex) => {
-        const notas = this.state.notas
-        notas.splice(noteIndex, 1)
-        this.setState(prev => ({ notas }))
-    }
-
-    handleEditNote = (description, tags, noteIndex) => {
-        const notas = this.state.notas
-        notas[noteIndex].description = description
-        notas[noteIndex].tags = tags
-        notas[noteIndex].lastEditedAt = new Date()
-        this.setState(prev => ({ notas }))
-    }
-    
     render() {
         return (
             <div>
@@ -59,20 +25,12 @@ class App extends React.Component {
                     toggleLanguage: this.state.toggleLanguage 
                 }}>
                     <ButtonToggleLanguage/>
-                    <AddNotaErrorHandler>
-                        <AddNota handleAddNota={this.handleAddNota}/>
-                    </AddNotaErrorHandler>
-                    <ListaNotasErrorHandler>
-                        <ListaNotas
-                            notas={this.state.notas}
-                            handleDeleteNote={this.handleDeleteNote}
-                            handleEditNote={this.handleEditNote}
-                        />
-                    </ListaNotasErrorHandler>
+                    <BooksPage/>
                 </Language.Provider>
             </div>
         )
     }
+
 }
 
 export default App
