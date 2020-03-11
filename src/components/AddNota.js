@@ -55,7 +55,7 @@ class AddNota extends React.Component {
     }
 
     getStaticText = lang => {
-
+        
         if (lang === 'pt-br') {
             return {
                 text1: 'sua nota',

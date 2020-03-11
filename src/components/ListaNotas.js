@@ -17,6 +17,7 @@ class ListaNotas extends React.Component {
     }
 
     render() {
+        
         return (
             <div>
                 {this.props.notas.map((nota, i) => 

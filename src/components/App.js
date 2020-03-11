@@ -3,6 +3,8 @@ import AddNota from './AddNota'
 import ListaNotas from './ListaNotas'
 import ButtonToggleLanguage from './ButtonToggleLanguage'
 import Language from '../contexts/Language'
+import AddNotaErrorHandler from '../error_handlers/AddNotaErrorHandler'
+import ListaNotasErrorHandler from '../error_handlers/ListaNotasErrorHandler'
 
 class App extends React.Component {
 
@@ -57,12 +59,16 @@ class App extends React.Component {
                     toggleLanguage: this.state.toggleLanguage 
                 }}>
                     <ButtonToggleLanguage/>
-                    <AddNota handleAddNota={this.handleAddNota}/>
-                    <ListaNotas
-                        notas={this.state.notas}
-                        handleDeleteNote={this.handleDeleteNote}
-                        handleEditNote={this.handleEditNote}
-                    />
+                    <AddNotaErrorHandler>
+                        <AddNota handleAddNota={this.handleAddNota}/>
+                    </AddNotaErrorHandler>
+                    <ListaNotasErrorHandler>
+                        <ListaNotas
+                            notas={this.state.notas}
+                            handleDeleteNote={this.handleDeleteNote}
+                            handleEditNote={this.handleEditNote}
+                        />
+                    </ListaNotasErrorHandler>
                 </Language.Provider>
             </div>
         )

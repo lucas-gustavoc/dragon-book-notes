@@ -43,7 +43,7 @@ class Nota extends React.Component {
                 text1: '[taken at ]MM/DD/YYYY HH:mm[. ]',
                 text2: 'Updated ',
                 text3: 'Edit',
-                text4: 'Delete'
+                text4: 'Remove'
             }
         }
 
