@@ -3,13 +3,16 @@ import Language from '../contexts/Language'
 
 // ***** ACCEPTABLE PROPS *****
 // addBook [function] (required): Function called when a book is added.
+// handleCancelOperation [function]: function called when the button "Cancelar" is clicked
+// book [Book]: Info about the book which is being editted.
+// isEdition [boolean]: Boolean indicating if this is an edition or not. Default false.
 
 class AddBook extends React.Component {
 
     state = {
-        bookName: '',
-        authorName: '',
-        description: ''
+        bookName: this.props.book.bookName,
+        bookAuthor: this.props.book.bookAuthor,
+        description: this.props.book.description
     }
 
     handleInputChange = e => {
@@ -22,12 +25,16 @@ class AddBook extends React.Component {
     }
 
     handleAddBook = e => {
-        this.props.addBook(this.state.bookName, this.state.authorName, this.state.description)
+        this.props.addBook(this.state.bookName, this.state.bookAuthor, this.state.description)
         this.setState(prev => ({
             bookName: '',
             authorName: '',
             description: ''
         }))
+    }
+
+    handleCancelOperation = e => {
+        if (this.props.handleCancelOperation) this.props.handleCancelOperation()
     }
 
     getStaticText = lang => {
@@ -37,14 +44,18 @@ class AddBook extends React.Component {
                 text1: 'título do livro',
                 text2: 'autor do livro',
                 text3: 'informações adicionais',
-                text4: 'Adicionar'
+                text4: 'Adicionar',
+                text5: 'Salvar',
+                text6: 'Cancelar'
             }
         } else {
             return {
                 text1: 'book name',
                 text2: 'author name',
                 text3: 'some extra info',
-                text4: 'Add'
+                text4: 'Add',
+                text5: 'Save',
+                text6: 'Cancel'
             }
         }
 
@@ -65,8 +76,8 @@ class AddBook extends React.Component {
                 />
                 <input 
                     type="text"
-                    name="authorName"
-                    value={this.state.authorName}
+                    name="bookAuthor"
+                    value={this.state.bookAuthor}
                     onChange={this.handleInputChange}
                     placeholder={staticText.text2}
                 />
@@ -76,12 +87,27 @@ class AddBook extends React.Component {
                     onChange={this.handleInputChange}
                     placeholder={staticText.text3}
                 />
-                <button onClick={this.handleAddBook}>{staticText.text4}</button>
+                <button onClick={this.handleAddBook}>
+                    {(this.props.isEdition) ? staticText.text5 : staticText.text4}
+                </button>
+                {this.props.isEdition && 
+                    <button onClick={this.handleCancelOperation}>
+                        {staticText.text6}
+                    </button>
+                }
             </div>
         )
     }
 }
 
 AddBook.contextType = Language
+
+AddBook.defaultProps = {
+    book: {
+        bookName: '',
+        bookAuthor: '',
+        description: ''
+    }
+}
 
 export default AddBook

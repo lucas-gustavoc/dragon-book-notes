@@ -2,6 +2,7 @@ import React from 'react'
 import Language from '../contexts/Language'
 import PageTitle from './PageTitle'
 import AddBook from './AddBook'
+import ListaBooks from './ListaBooks'
 
 class BooksPage extends React.Component {
 
@@ -13,7 +14,20 @@ class BooksPage extends React.Component {
         const books = this.state.books
         books.unshift({ bookName, bookAuthor, description })
         this.setState(prev => ({ books }))
-        console.log(books)
+    }
+
+    handleDeleteBook = (bookIndex) => {
+        const books = this.state.books
+        books.splice(bookIndex, 1)
+        this.setState(prev => ({ books }))
+    }
+
+    handleEditBook = (bookName, bookAuthor, description, bookIndex) => {
+        const books = this.state.books
+        books[bookIndex].bookName = bookName
+        books[bookIndex].bookAuthor = bookAuthor
+        books[bookIndex].description = description
+        this.setState(prev => ({ books }))
     }
 
     getStaticText = lang => {
@@ -38,7 +52,11 @@ class BooksPage extends React.Component {
             <div>
                 <PageTitle is={staticText.text1}/>
                 <AddBook addBook={this.handleAddBook}/>
-                <div>Lugar para ver e editar os livros cadastrados</div>
+                <ListaBooks 
+                    books={this.state.books}
+                    handleDeleteBook={this.handleDeleteBook}
+                    handleEditBook={this.handleEditBook}
+                />
             </div>
         )
     }
