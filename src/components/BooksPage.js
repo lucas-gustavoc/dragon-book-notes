@@ -7,19 +7,38 @@ import ListaBooks from './ListaBooks'
 class BooksPage extends React.Component {
 
     state = {
-        books: []
+        books: [],
+        lastEditedAt: new Date()
+    }
+
+    componentDidMount() {
+        const localData = localStorage.dragonBookNotesData
+
+        if (localData) {
+            const JSONdata = JSON.parse(localData)
+            this.setState(prev => ({
+                books: JSONdata.books
+            }))
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.lastEditedAt !== prevState.lastEditedAt) {
+            const JSONdata = JSON.stringify({ books: this.state.books })
+            localStorage.dragonBookNotesData = JSONdata
+        }
     }
 
     handleAddBook = (bookName, bookAuthor, description) => {
         const books = this.state.books
-        books.unshift({ bookName, bookAuthor, description })
-        this.setState(prev => ({ books }))
+        books.push({ bookName, bookAuthor, description, notes: [] })
+        this.setState(prev => ({ books, lastEditedAt: new Date() }))
     }
 
     handleDeleteBook = (bookIndex) => {
         const books = this.state.books
         books.splice(bookIndex, 1)
-        this.setState(prev => ({ books }))
+        this.setState(prev => ({ books, lastEditedAt: new Date() }))
     }
 
     handleEditBook = (bookName, bookAuthor, description, bookIndex) => {
@@ -27,7 +46,7 @@ class BooksPage extends React.Component {
         books[bookIndex].bookName = bookName
         books[bookIndex].bookAuthor = bookAuthor
         books[bookIndex].description = description
-        this.setState(prev => ({ books }))
+        this.setState(prev => ({ books, lastEditedAt: new Date() }))
     }
 
     getStaticText = lang => {

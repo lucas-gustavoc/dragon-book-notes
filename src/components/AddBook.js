@@ -28,7 +28,7 @@ class AddBook extends React.Component {
         this.props.addBook(this.state.bookName, this.state.bookAuthor, this.state.description)
         this.setState(prev => ({
             bookName: '',
-            authorName: '',
+            bookAuthor: '',
             description: ''
         }))
     }

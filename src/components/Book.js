@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import EditaBook from './EditaBook'
 import Language from '../contexts/Language'
 
@@ -60,6 +61,9 @@ class Book extends React.Component {
                                                 ' - ' + this.props.book.bookAuthor}
                     </p>
                     {this.props.book.description && <p>{this.props.book.description}</p>}
+                    <div>
+                        <Link to={`/book/${this.props.index}`}>Go to Notes</Link>
+                    </div>
                     <div>
                         <button onClick={e => this.setState(prev => ({ isEditting: true }))}>
                             {statiText.text1}

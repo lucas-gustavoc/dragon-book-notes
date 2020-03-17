@@ -19,6 +19,7 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-moment": "^0.9.7",
+    "react-router-dom": "^5.1.2",
     "sass-loader": "^8.0.2",
     "simple-sass-gridsystem": "^1.0.5",
     "style-loader": "^1.1.3",

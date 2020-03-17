@@ -10,14 +10,9 @@ import PageTitle from './PageTitle'
 
 class BookNotesPage extends React.Component {
 
-    toggleLanguage = () => {
-        this.setState(prev => ({
-            language: (prev.language === 'pt-br') ? 'en-us' : 'pt-br'
-        }))
-    }
-
     state = {
-        notas: []
+        notas: [],
+        lastEditedAt: new Date()
     }
 
     criarNovaNota = (description, tags) => {
@@ -30,16 +25,47 @@ class BookNotesPage extends React.Component {
         }
     }
 
+    componentDidMount() {
+        const localData = localStorage.dragonBookNotesData
+        const bookId = this.props.match.params.id
+
+        if (localData && bookId) {
+            const JSONData = JSON.parse(localData)
+
+            if (JSONData.books[bookId]) {
+                this.setState(prev => ({
+                    notas: JSONData.books[bookId].notes
+                }))
+            }
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.lastEditedAt !== prevState.lastEditedAt) {
+            const localData = localStorage.dragonBookNotesData
+            const bookId = this.props.match.params.id
+
+            if (localData && bookId) {
+                const JSONData = JSON.parse(localData)
+
+                if (JSONData.books[bookId]) {
+                    JSONData.books[bookId].notes = this.state.notas
+                    localStorage.dragonBookNotesData = JSON.stringify(JSONData)
+                }
+            }
+        }
+    }
+
     handleAddNota = (description, tags) => {
         const notas = this.state.notas
         notas.unshift(this.criarNovaNota(description, tags))
-        this.setState(prev => ({ notas }))
+        this.setState(prev => ({ notas, lastEditedAt: new Date() }))
     }
 
     handleDeleteNote = (noteIndex) => {
         const notas = this.state.notas
         notas.splice(noteIndex, 1)
-        this.setState(prev => ({ notas }))
+        this.setState(prev => ({ notas, lastEditedAt: new Date() }))
     }
 
     handleEditNote = (description, tags, noteIndex) => {
@@ -47,10 +73,11 @@ class BookNotesPage extends React.Component {
         notas[noteIndex].description = description
         notas[noteIndex].tags = tags
         notas[noteIndex].lastEditedAt = new Date()
-        this.setState(prev => ({ notas }))
+        this.setState(prev => ({ notas, lastEditedAt: new Date() }))
     }
     
     render() {
+        // console.log(this.props.match.params)
         return (
             <div>
                 <PageTitle is={this.props.bookName} subtitle="Entendendo os fenômenos por trás da sorte."/>
@@ -69,6 +96,15 @@ class BookNotesPage extends React.Component {
     }
 
 }
+
+
+
+// Editar título do livro dinamicamente
+// Colocar um botão de voltar
+
+
+
+
 
 BookNotesPage.defaultProps = {
     bookName: ''
