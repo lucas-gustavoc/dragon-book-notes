@@ -1,18 +1,20 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import AddNota from './AddNota'
 import ListaNotas from './ListaNotas'
 import AddNotaErrorHandler from '../error_handlers/AddNotaErrorHandler'
 import ListaNotasErrorHandler from '../error_handlers/ListaNotasErrorHandler'
 import PageTitle from './PageTitle'
+import Language from '../contexts/Language'
 
-// ***** ACCEPTABLE PROPS *****
-// bookName [string]: The book's name.
 
 class BookNotesPage extends React.Component {
 
     state = {
         notas: [],
-        lastEditedAt: new Date()
+        lastEditedAt: new Date(),
+        bookName: '',
+        bookAuthor: ''
     }
 
     criarNovaNota = (description, tags) => {
@@ -34,7 +36,9 @@ class BookNotesPage extends React.Component {
 
             if (JSONData.books[bookId]) {
                 this.setState(prev => ({
-                    notas: JSONData.books[bookId].notes
+                    notas: JSONData.books[bookId].notes,
+                    bookName: JSONData.books[bookId].bookName,
+                    bookAuthor: JSONData.books[bookId].bookAuthor
                 }))
             }
         }
@@ -80,7 +84,14 @@ class BookNotesPage extends React.Component {
         // console.log(this.props.match.params)
         return (
             <div>
-                <PageTitle is={this.props.bookName} subtitle="Entendendo os fenômenos por trás da sorte."/>
+                <Language.Consumer>
+                    {context => (
+                        <React.Fragment>
+                            <Link to="/">{(context.language === 'pt-br') ? '< Voltar' : '< Back'}</Link>
+                        </React.Fragment>
+                    )}
+                </Language.Consumer>
+                <PageTitle is={this.state.bookName} subtitle={this.state.bookAuthor}/>
                 <AddNotaErrorHandler>
                     <AddNota handleAddNota={this.handleAddNota}/>
                 </AddNotaErrorHandler>
@@ -96,15 +107,6 @@ class BookNotesPage extends React.Component {
     }
 
 }
-
-
-
-// Editar título do livro dinamicamente
-// Colocar um botão de voltar
-
-
-
-
 
 BookNotesPage.defaultProps = {
     bookName: ''

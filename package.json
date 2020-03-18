@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "build-sass": "sass src/styles/styles.scss src/styles/styles.css --no-source-map --watch"
   },
   "dependencies": {
     "@babel/core": "^7.8.6",
@@ -20,6 +21,7 @@
     "react-dom": "^16.13.0",
     "react-moment": "^0.9.7",
     "react-router-dom": "^5.1.2",
+    "sass": "^1.26.3",
     "sass-loader": "^8.0.2",
     "simple-sass-gridsystem": "^1.0.5",
     "style-loader": "^1.1.3",

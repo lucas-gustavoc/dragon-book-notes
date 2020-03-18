@@ -30,12 +30,14 @@ class Book extends React.Component {
         if (lang === 'pt-br') {
             return {
                 text1: 'Editar',
-                text2: 'Excluir'
+                text2: 'Excluir',
+                text3: 'Ver Notas'
             }
         } else {
             return {
                 text1: 'Edit',
-                text2: 'Remove'
+                text2: 'Remove',
+                text3: 'See Notes'
             }
         }
 
@@ -43,7 +45,7 @@ class Book extends React.Component {
 
     render() {
 
-        const statiText = this.getStaticText(this.context.language)
+        const staticText = this.getStaticText(this.context.language)
 
         if (this.state.isEditting) {
             // A nota está sendo editada
@@ -62,14 +64,14 @@ class Book extends React.Component {
                     </p>
                     {this.props.book.description && <p>{this.props.book.description}</p>}
                     <div>
-                        <Link to={`/book/${this.props.index}`}>Go to Notes</Link>
+                        <Link to={`/book/${this.props.index}`}>{staticText.text3}</Link>
                     </div>
                     <div>
                         <button onClick={e => this.setState(prev => ({ isEditting: true }))}>
-                            {statiText.text1}
+                            {staticText.text1}
                         </button>
                         <button onClick={e => this.props.deleteBook(this.props.index)}>
-                            {statiText.text2}
+                            {staticText.text2}
                         </button>
                     </div>
                 </div>

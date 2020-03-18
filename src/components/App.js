@@ -5,6 +5,9 @@ import ButtonToggleLanguage from './ButtonToggleLanguage'
 import BookNotesPage from './BookNotesPage'
 import BooksPage from './BooksPage'
 
+// [ ] Editar título do livro dinamicamente
+// [ ] Colocar um botão de voltar
+
 class App extends React.Component {
 
     toggleLanguage = () => {
