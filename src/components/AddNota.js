@@ -81,20 +81,22 @@ class AddNota extends React.Component {
         const staticText = this.getStaticText(this.context.language)
 
         return (
-            <div>
-                <p>
-                    <textarea
-                        rows="5"
-                        value={this.state.description}
-                        onChange={this.handleDescriptionData}
-                        placeholder={(this.props.isEdition) ? staticText.text1 : staticText.text2}
-                    />
-                </p>
-                <AddTag handleAddTag={this.handleAddTag}/>
-                <ListaTags tags={this.state.tags} handleRemoveTag={this.handleRemoveTag}/>
-                <div>
-                    <button onClick={this.handleAddNota}>{(this.props.isEdition) ? staticText.text3 : staticText.text4}</button>
-                    {this.props.isEdition && <button onClick={this.handleCancelOperation}>{staticText.text5}</button>}
+            <div className="row">
+                <div className="col-12 user-input">
+                    <div>
+                        <textarea
+                            rows="5"
+                            value={this.state.description}
+                            onChange={this.handleDescriptionData}
+                            placeholder={(this.props.isEdition) ? staticText.text1 : staticText.text2}
+                        />
+                    </div>
+                    <AddTag handleAddTag={this.handleAddTag}/>
+                    <ListaTags tags={this.state.tags} handleRemoveTag={this.handleRemoveTag}/>
+                    <div>
+                        <button onClick={this.handleAddNota}>{(this.props.isEdition) ? staticText.text3 : staticText.text4}</button>
+                        {this.props.isEdition && <button onClick={this.handleCancelOperation}>{staticText.text5}</button>}
+                    </div>
                 </div>
             </div>
         )

@@ -1,11 +1,20 @@
 @use 'base';
 
-body {
-    color: base.$text-color;
+* {
+	box-sizing: border-box;
 }
 
-button {
-    box-shadow:inset 0px -3px 7px 0px #29bbff;
+h1,h2,h3,h4,h5,h6 {
+	margin: 0;
+}
+
+body {
+	color: base.$text-color;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.std-btn {
+	box-shadow:inset 0px -3px 7px 0px #29bbff;
 	background:linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
 	background-color:#2dabf9;
 	border-radius:3px;
@@ -15,4 +24,39 @@ button {
 	color:#ffffff;
 	padding:9px 23px;
 	text-decoration:none;
+}
+
+.back {
+	@extend .std-btn;
+	padding: 5px;
+}
+
+.toggle-language {
+	@extend .std-btn;
+	padding: 5px;
+	float: right;
+}
+
+.user-input {
+
+	input,textarea {
+		@extend %default-input-layout;
+	}
+
+	button {
+		@extend %default-input-layout;
+		@extend .std-btn;
+	}
+
+	.remove {
+		cursor: pointer;
+		color: blue;
+	}
+
+}
+
+.card {
+	border: 1px solid #B0B0B0;
+	background-color: #E0E0E0;
+	padding: 10px;
 }

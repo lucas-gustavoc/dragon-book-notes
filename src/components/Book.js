@@ -57,22 +57,26 @@ class Book extends React.Component {
         } else {
             
             return (
-                <div>
-                    <p>
-                        {this.props.book.bookName}{this.props.book.bookAuthor && 
-                                                ' - ' + this.props.book.bookAuthor}
-                    </p>
-                    {this.props.book.description && <p>{this.props.book.description}</p>}
-                    <div>
-                        <Link to={`/book/${this.props.index}`}>{staticText.text3}</Link>
-                    </div>
-                    <div>
-                        <button onClick={e => this.setState(prev => ({ isEditting: true }))}>
-                            {staticText.text1}
-                        </button>
-                        <button onClick={e => this.props.deleteBook(this.props.index)}>
-                            {staticText.text2}
-                        </button>
+                <div className="row">
+                    <div className="col-12">
+                        <div className="card">
+                            <p>
+                                {this.props.book.bookName}{this.props.book.bookAuthor && 
+                                                        ' - ' + this.props.book.bookAuthor}
+                            </p>
+                            {this.props.book.description && <p>{this.props.book.description}</p>}
+                            <div>
+                                <Link to={`/book/${this.props.index}`}>{staticText.text3}</Link>
+                            </div>
+                            <div>
+                                <button onClick={e => this.setState(prev => ({ isEditting: true }))}>
+                                    {staticText.text1}
+                                </button>
+                                <button onClick={e => this.props.deleteBook(this.props.index)}>
+                                    {staticText.text2}
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )

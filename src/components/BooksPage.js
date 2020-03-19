@@ -3,6 +3,7 @@ import Language from '../contexts/Language'
 import PageTitle from './PageTitle'
 import AddBook from './AddBook'
 import ListaBooks from './ListaBooks'
+import ButtonToggleLanguage from './ButtonToggleLanguage'
 
 class BooksPage extends React.Component {
 
@@ -69,7 +70,12 @@ class BooksPage extends React.Component {
 
         return (
             <div>
-                <PageTitle is={staticText.text1}/>
+                <div className="row">
+                    <div className="col-12">
+                        <ButtonToggleLanguage className="toggle-language"/>
+                        <PageTitle is={staticText.text1}/>
+                    </div>
+                </div>
                 <AddBook addBook={this.handleAddBook}/>
                 <ListaBooks 
                     books={this.state.books}

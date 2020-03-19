@@ -66,35 +66,37 @@ class AddBook extends React.Component {
         const staticText = this.getStaticText(this.context.language)
 
         return (
-            <div>
-                <input 
-                    type="text"
-                    name="bookName"
-                    value={this.state.bookName}
-                    onChange={this.handleInputChange}
-                    placeholder={staticText.text1}
-                />
-                <input 
-                    type="text"
-                    name="bookAuthor"
-                    value={this.state.bookAuthor}
-                    onChange={this.handleInputChange}
-                    placeholder={staticText.text2}
-                />
-                <textarea
-                    name="description"
-                    value={this.state.description}
-                    onChange={this.handleInputChange}
-                    placeholder={staticText.text3}
-                />
-                <button onClick={this.handleAddBook}>
-                    {(this.props.isEdition) ? staticText.text5 : staticText.text4}
-                </button>
-                {this.props.isEdition && 
-                    <button onClick={this.handleCancelOperation}>
-                        {staticText.text6}
+            <div className="row">
+                <div className="col-12 user-input">
+                    <input 
+                        type="text"
+                        name="bookName"
+                        value={this.state.bookName}
+                        onChange={this.handleInputChange}
+                        placeholder={staticText.text1}
+                    />
+                    <input 
+                        type="text"
+                        name="bookAuthor"
+                        value={this.state.bookAuthor}
+                        onChange={this.handleInputChange}
+                        placeholder={staticText.text2}
+                    />
+                    <textarea
+                        name="description"
+                        value={this.state.description}
+                        onChange={this.handleInputChange}
+                        placeholder={staticText.text3}
+                    />
+                    <button onClick={this.handleAddBook}>
+                        {(this.props.isEdition) ? staticText.text5 : staticText.text4}
                     </button>
-                }
+                    {this.props.isEdition && 
+                        <button onClick={this.handleCancelOperation}>
+                            {staticText.text6}
+                        </button>
+                    }
+                </div>
             </div>
         )
     }

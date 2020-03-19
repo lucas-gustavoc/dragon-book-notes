@@ -87,15 +87,19 @@ class Nota extends React.Component {
             
 
             return (
-                <div>
-                    {this.props.createdAt && dataCriacaoDaNota}
-                    <p>
-                        {this.props.description}
-                    </p>
-                    {(this.props.tags.length > 0) && tagList}
-                    <div>
-                        <button onClick={e => this.setState(prev => ({ isEditting: true }))}>{statiText.text3}</button>
-                        <button onClick={e => this.props.deleteNote(this.props.index)}>{statiText.text4}</button>
+                <div className="row">
+                    <div className="col-12">
+                    <div className="card">
+                        {this.props.createdAt && dataCriacaoDaNota}
+                        <p>
+                            {this.props.description}
+                        </p>
+                        {(this.props.tags.length > 0) && tagList}
+                        <div>
+                            <button onClick={e => this.setState(prev => ({ isEditting: true }))}>{statiText.text3}</button>
+                            <button onClick={e => this.props.deleteNote(this.props.index)}>{statiText.text4}</button>
+                        </div>
+                    </div>
                     </div>
                 </div>
             )

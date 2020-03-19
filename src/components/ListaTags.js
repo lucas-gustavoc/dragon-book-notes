@@ -7,6 +7,8 @@ import React from 'react'
 
 const ListaTags = props => {
 
+    if (props.tags.length === 0) return null
+
     const handleRemoveTag = tagIndex => {
         if (props.handleRemoveTag) props.handleRemoveTag(tagIndex)
     }
@@ -39,7 +41,11 @@ const Tag = props => {
     return (
         <li>
             {props.tagName}
-            {props.deletable && <button onClick={e => props.removeTag(props.index)}>x</button>}
+            {props.deletable && 
+                <React.Fragment>
+                    &nbsp;<span className="remove" onClick={e => props.removeTag(props.index)}>[x]</span>
+                </React.Fragment>
+            }
         </li>
     )
 }

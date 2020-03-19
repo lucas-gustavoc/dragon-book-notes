@@ -1,8 +1,23 @@
-body {
-  color: black;
+.user-input input, .user-input textarea, .user-input button {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
 }
 
-button {
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+body {
+  color: black;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.std-btn, .user-input button, .toggle-language, .back {
   box-shadow: inset 0px -3px 7px 0px #29bbff;
   background: linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
   background-color: #2dabf9;
@@ -13,4 +28,24 @@ button {
   color: #ffffff;
   padding: 9px 23px;
   text-decoration: none;
+}
+
+.back {
+  padding: 5px;
+}
+
+.toggle-language {
+  padding: 5px;
+  float: right;
+}
+
+.user-input .remove {
+  cursor: pointer;
+  color: blue;
+}
+
+.card {
+  border: 1px solid #B0B0B0;
+  background-color: #E0E0E0;
+  padding: 10px;
 }

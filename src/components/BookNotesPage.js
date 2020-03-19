@@ -6,6 +6,7 @@ import AddNotaErrorHandler from '../error_handlers/AddNotaErrorHandler'
 import ListaNotasErrorHandler from '../error_handlers/ListaNotasErrorHandler'
 import PageTitle from './PageTitle'
 import Language from '../contexts/Language'
+import ButtonToggleLanguage from './ButtonToggleLanguage'
 
 
 class BookNotesPage extends React.Component {
@@ -84,14 +85,23 @@ class BookNotesPage extends React.Component {
         // console.log(this.props.match.params)
         return (
             <div>
-                <Language.Consumer>
-                    {context => (
-                        <React.Fragment>
-                            <Link to="/">{(context.language === 'pt-br') ? '< Voltar' : '< Back'}</Link>
-                        </React.Fragment>
-                    )}
-                </Language.Consumer>
-                <PageTitle is={this.state.bookName} subtitle={this.state.bookAuthor}/>
+                <div className="row">
+                    <div className="col-12">
+                        <Language.Consumer>
+                            {context => (
+                                <React.Fragment>
+                                    <Link to="/"><span className="back">{(context.language === 'pt-br') ? '< Voltar' : '< Back'}</span></Link>
+                                    <ButtonToggleLanguage className="toggle-language"/>
+                                </React.Fragment>
+                            )}
+                        </Language.Consumer>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12">
+                        <PageTitle is={this.state.bookName} subtitle={this.state.bookAuthor}/>
+                    </div>
+                </div>
                 <AddNotaErrorHandler>
                     <AddNota handleAddNota={this.handleAddNota}/>
                 </AddNotaErrorHandler>

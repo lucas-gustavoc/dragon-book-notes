@@ -1,12 +1,10 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Language from '../contexts/Language'
-import ButtonToggleLanguage from './ButtonToggleLanguage'
 import BookNotesPage from './BookNotesPage'
 import BooksPage from './BooksPage'
 
-// [ ] Editar título do livro dinamicamente
-// [ ] Colocar um botão de voltar
+// [ ] Dar uma olhada no gridsystem para ver se tem algum margin-top zuando tudo
 
 class App extends React.Component {
 
@@ -28,7 +26,6 @@ class App extends React.Component {
                     language: this.state.language, 
                     toggleLanguage: this.state.toggleLanguage 
                 }}>
-                    <ButtonToggleLanguage/>
                     <Router>
                         <Switch>
                             <Route path="/book/:id" component={BookNotesPage}/>

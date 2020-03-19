@@ -10,7 +10,7 @@ import Language from '../contexts/Language'
 const ButtonToggleLanguage = props => (
     <Language.Consumer>
         {({language, toggleLanguage}) => (
-            <button onClick={toggleLanguage}>
+            <button {...props} onClick={toggleLanguage}>
                 {(language === 'pt-br') ? 'en-us' : 'pt-br'}
             </button>
         )}
