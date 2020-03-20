@@ -3,6 +3,7 @@ import Moment from 'react-moment'
 import ListaTags from './ListaTags'
 import EditaNota from './EditaNota'
 import Language from '../contexts/Language'
+import Card from './Card'
 
 // ***** ACCEPTABLE PROPS *****
 // index [number]: Note's index in the parent element's Array of Notes
@@ -34,14 +35,14 @@ class Nota extends React.Component {
         if (lang === 'pt-br') {
             return {
                 text1: '[criada em ]DD/MM/YYYY [às ]HH:mm[. ]',
-                text2: 'Atualizada ',
+                text2: ' Atualizada ',
                 text3: 'Editar',
                 text4: 'Excluir'
             }
         } else {
             return {
                 text1: '[taken at ]MM/DD/YYYY HH:mm[. ]',
-                text2: 'Updated ',
+                text2: ' Updated ',
                 text3: 'Edit',
                 text4: 'Remove'
             }
@@ -75,33 +76,33 @@ class Nota extends React.Component {
                                       this.props.lastEditedAt !== this.props.createdAt)
 
             const dataCriacaoDaNota = (
-                <p>
+                <React.Fragment>
                     <Moment
                         date={this.props.createdAt}
                         format={statiText.text1}
                     />
                     {mostrarDataEdicao && statiText.text2}
                     {mostrarDataEdicao && dataUltimaEdicao}
-                </p>
+                </React.Fragment>
             )
             
 
             return (
-                <div className="row">
-                    <div className="col-12">
-                    <div className="card">
+                <Card>
+                    <div className="date">
                         {this.props.createdAt && dataCriacaoDaNota}
+                    </div>
+                    <div className="note">
                         <p>
                             {this.props.description}
                         </p>
                         {(this.props.tags.length > 0) && tagList}
-                        <div>
-                            <button onClick={e => this.setState(prev => ({ isEditting: true }))}>{statiText.text3}</button>
-                            <button onClick={e => this.props.deleteNote(this.props.index)}>{statiText.text4}</button>
-                        </div>
                     </div>
+                    <div>
+                        <button className="btn-cmd" onClick={e => this.setState(prev => ({ isEditting: true }))}>{statiText.text3}</button>
+                        <button className="btn-cmd" onClick={e => this.props.deleteNote(this.props.index)}>{statiText.text4}</button>
                     </div>
-                </div>
+                </Card>
             )
         }
 

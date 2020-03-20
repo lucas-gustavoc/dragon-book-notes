@@ -14,7 +14,7 @@ const ListaTags = props => {
     }
 
     return (
-        <ul>
+        <ul className="tags">
             {props.tags.map((tag, i) => {
                 return <Tag
                             tagName={tag}

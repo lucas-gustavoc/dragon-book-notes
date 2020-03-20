@@ -56,7 +56,60 @@ body {
 }
 
 .card {
-	border: 1px solid #B0B0B0;
-	background-color: #E0E0E0;
+	background-color: #F2F2F2;
 	padding: 10px;
+	margin: 7.5px 15px;
+
+	.title {
+		font-weight: bold;
+		border-bottom: 1px solid #C0C0C0;
+		padding-bottom: 5px;
+		margin-bottom: 10px;
+	}
+
+	.btn-cmd {
+		@extend .std-btn;
+		float: right;
+		margin-left: 5px;
+		padding: 5px;
+		font-size: 80%;
+	}
+
+	.date {
+		font-size: 70%;
+		font-style: italic;
+
+		time {
+			display: inline-block;
+		}
+	}
+
+	.note {
+		font-size: 90%;
+	}
+
+	.tags {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		display: inline;
+
+		li {
+			display: inline-block;
+			background-color: #404040;
+			margin-right: 5px;
+			border-radius: 3px;
+			padding: 1px 6px;
+			font-style: italic;
+			font-weight: bold;
+			color: white;
+			font-size: 90%;
+		}
+	}
+
+	::after {
+		content: "";
+		clear: both;
+		display: table;
+	}
 }

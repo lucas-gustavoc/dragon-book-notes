@@ -17,7 +17,7 @@ body {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-.std-btn, .user-input button, .toggle-language, .back {
+.std-btn, .card .btn-cmd, .user-input button, .toggle-language, .back {
   box-shadow: inset 0px -3px 7px 0px #29bbff;
   background: linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
   background-color: #2dabf9;
@@ -45,7 +45,51 @@ body {
 }
 
 .card {
-  border: 1px solid #B0B0B0;
-  background-color: #E0E0E0;
+  background-color: #F2F2F2;
   padding: 10px;
+  margin: 7.5px 15px;
+}
+.card .title {
+  font-weight: bold;
+  border-bottom: 1px solid #C0C0C0;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+.card .btn-cmd {
+  float: right;
+  margin-left: 5px;
+  padding: 5px;
+  font-size: 80%;
+}
+.card .date {
+  font-size: 70%;
+  font-style: italic;
+}
+.card .date time {
+  display: inline-block;
+}
+.card .note {
+  font-size: 90%;
+}
+.card .tags {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+.card .tags li {
+  display: inline-block;
+  background-color: #404040;
+  margin-right: 5px;
+  border-radius: 3px;
+  padding: 1px 6px;
+  font-style: italic;
+  font-weight: bold;
+  color: white;
+  font-size: 90%;
+}
+.card ::after {
+  content: "";
+  clear: both;
+  display: table;
 }

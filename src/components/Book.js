@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import EditaBook from './EditaBook'
 import Language from '../contexts/Language'
+import Card from './Card'
 
 // ***** ACCEPTABLE PROPS *****
 // index [number]: Book's index in the parent element's Array of Books
@@ -57,28 +58,23 @@ class Book extends React.Component {
         } else {
             
             return (
-                <div className="row">
-                    <div className="col-12">
-                        <div className="card">
-                            <p>
-                                {this.props.book.bookName}{this.props.book.bookAuthor && 
-                                                        ' - ' + this.props.book.bookAuthor}
-                            </p>
-                            {this.props.book.description && <p>{this.props.book.description}</p>}
-                            <div>
-                                <Link to={`/book/${this.props.index}`}>{staticText.text3}</Link>
-                            </div>
-                            <div>
-                                <button onClick={e => this.setState(prev => ({ isEditting: true }))}>
-                                    {staticText.text1}
-                                </button>
-                                <button onClick={e => this.props.deleteBook(this.props.index)}>
-                                    {staticText.text2}
-                                </button>
-                            </div>
-                        </div>
+                <Card>
+                    <div className="title">
+                        {this.props.book.bookName}{this.props.book.bookAuthor && 
+                                                ' - ' + this.props.book.bookAuthor}
                     </div>
-                </div>
+                    {this.props.book.description && <p>{this.props.book.description}</p>}
+                    <div>
+                        
+                        <button className="btn-cmd" onClick={e => this.setState(prev => ({ isEditting: true }))}>
+                            {staticText.text1}
+                        </button>
+                        <button className="btn-cmd" onClick={e => this.props.deleteBook(this.props.index)}>
+                            {staticText.text2}
+                        </button>
+                        <Link to={`/book/${this.props.index}`}>{staticText.text3}</Link>
+                    </div>
+                </Card>
             )
         }
 

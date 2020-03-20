@@ -21,7 +21,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="ssg-global-settings no-nested-padding">
                 <Language.Provider value={{ 
                     language: this.state.language, 
                     toggleLanguage: this.state.toggleLanguage 

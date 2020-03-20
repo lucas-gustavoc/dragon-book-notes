@@ -5129,10 +5129,10 @@ signal-exit@^3.0.0:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
 
-simple-sass-gridsystem@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/simple-sass-gridsystem/-/simple-sass-gridsystem-1.0.5.tgz#90fccf6525469b0b6c92afbed30e5beb9ff29bfb"
-  integrity sha512-f/AWqDpVk0yNU0MPsEtD9DmHnXyM+L+4QTG3xjHXnCRxCB8jLfJEu6b7umk1SxwSvt9RQH1adkon1MRzJDxaVA==
+simple-sass-gridsystem@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/simple-sass-gridsystem/-/simple-sass-gridsystem-1.1.1.tgz#c0caa55342dba65a82bf49ee8b45e0ee26a43535"
+  integrity sha512-xakmkP+Pj0vJL3qU8vaT/A+skK5hmZxXgfeO64dL9nwQK2zUxatWvO9fxvm/k7yet4JK3cPH+NPLg9NTt0HVgw==
 
 snapdragon-node@^2.0.1:
   version "2.1.1"
